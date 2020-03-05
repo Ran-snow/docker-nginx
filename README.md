@@ -4,12 +4,12 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 使用的是 mainline alpine 版本构建的。  
 基于 commit baa050df601b5e798431a9db458e16f53b1031f6 修改的此 Dockerfile 。
 
-## 更新至 Nginx 1.17.7
+## 更新至 Nginx 1.17.8
 
 ## Tags
 
-* [`latest`,`amd64-1.17.7` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)
-* [`arm64v8-1.17.7` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)
+* [`latest`,`amd64-1.17.8` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)
+* [`arm64v8-1.17.8` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)
 
 ## 架构支持
 
@@ -23,13 +23,13 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 ## 构建
 
 ```
-docker build -t rsnow/nginx:arm64v8-1.17.7 .
+docker build -t rsnow/nginx:arm64v8-1.17.8 .
 ```
 
 ## 推送镜像
 
 ```
-docker push rsnow/nginx:arm64v8-1.17.7
+docker push rsnow/nginx:arm64v8-1.17.8
 ```
 
 ## 更多
