@@ -21,6 +21,7 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 2. 使用openssl 1.1.1f, 并对openssl进行防篡改(gpg)校验。
 3. 启用 Nginx 对 TLS1.3 http2 brotli 的支持。
 4. 使用东八时区。
+5. 预设“Modern configuration”型配置文件示例
 
 ## 构建
 
