@@ -1,11 +1,12 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
 ENV NGINX_VERSION 1.17.9
-ENV OPENSSL_VERSION 1.1.1d
+ENV OPENSSL_VERSION 1.1.1f
 
-RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
+RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
+	&& GPG_KEYS_OPENSSL=0E604491 \
 	&& CONFIG="\
 		--prefix=/etc/nginx \
 		--sbin-path=/usr/sbin/nginx \
@@ -51,7 +52,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		--with-file-aio \
 		--with-http_v2_module \
 		--with-openssl=/usr/src/openssl-$OPENSSL_VERSION \
-		--with-openssl-opt=enable-tls1_3 \
+		--add-module=/usr/src/ngx_brotli \
 	" \
 	&& addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
@@ -65,31 +66,33 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		zlib-dev \
 		linux-headers \
 		curl \
+		git \
 		gnupg1 \
 		libxslt-dev \
 		gd-dev \
 		geoip-dev \
+	&& git clone --depth=1 --recurse-submodules https://github.com/google/ngx_brotli.git /usr/src/ngx_brotli \
 	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
 	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
 	&& curl -fSL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz  -o openssl.tar.gz \
-	&& curl -fSL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz.sha256  -o openssl.tar.gz.sha256 \
+	&& curl -fSL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz.asc  -o openssl.tar.gz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& found=''; \
 	for server in \
+		keys.gnupg.net \
 		ha.pool.sks-keyservers.net \
 		hkp://keyserver.ubuntu.com:80 \
 		hkp://p80.pool.sks-keyservers.net:80 \
 		pgp.mit.edu \
 	; do \
-		echo "Fetching GPG key $GPG_KEYS from $server"; \
-		gpg --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$GPG_KEYS" && found=yes && break; \
+		echo "Fetching NGINX GPG key $GPG_KEYS_NGINX from $server"; \
+		echo "Fetching OPENSSL GPG key $GPG_KEYS_OPENSSL from $server"; \
+		gpg --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$GPG_KEYS_NGINX" "$GPG_KEYS_OPENSSL" && found=yes && break; \
 	done; \
-	test -z "$found" && echo >&2 "error: failed to fetch GPG key $GPG_KEYS" && exit 1; \
+	test -z "$found" && echo >&2 "error: failed to fetch GPG key $GPG_KEYS_NGINX $GPG_KEYS_OPENSSL" && exit 1; \
 	gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz; \
-	sha256=$(sha256sum openssl.tar.gz); \
-	test $(cat openssl.tar.gz.sha256) != ${sha256% *} && echo >&2 "error: openssl.tar.gz hash authentication failed" && exit 1; \
-	rm -rf "$GNUPGHOME" nginx.tar.gz.asc \
-	&& rm openssl.tar.gz.sha256 \
+	gpg --batch --verify openssl.tar.gz.asc openssl.tar.gz; \
+	rm -rf "$GNUPGHOME" nginx.tar.gz.asc openssl.tar.gz.asc \
 	&& mkdir -p /usr/src \
 	&& tar -zxC /usr/src -f nginx.tar.gz \
 	&& tar -zxC /usr/src -f openssl.tar.gz \
@@ -121,6 +124,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& strip /usr/lib/nginx/modules/*.so \
 	&& rm -rf /usr/src/nginx-$NGINX_VERSION \
 	&& rm -rf /usr/src/openssl-$OPENSSL_VERSION \
+	&& rm -rf /usr/src/ngx_brotli \
 	\
 	# Bring in gettext so we can get `envsubst`, then throw
 	# the rest away. To do this, we need to install `gettext`
@@ -143,6 +147,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	# Bring in tzdata so users could set the timezones through the environment
 	# variables
 	&& apk add --no-cache tzdata \
+	&& cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	\
 	# forward request and error logs to docker log collector
 	&& ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -150,8 +155,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
-# Certificate Authority for Nginx
-# COPY ca /etc/ca
 
 EXPOSE 80
 
