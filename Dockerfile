@@ -2,7 +2,7 @@ FROM alpine:3.11
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
-ENV NGINX_VERSION 1.17.10
+ENV NGINX_VERSION 1.18.0
 ENV OPENSSL_VERSION 1.1.1f
 
 RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
@@ -146,7 +146,7 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	\
 	# Bring in tzdata so users could set the timezones through the environment
 	# variables
-	&& apk add --no-cache tzdata \
+	&& apk add --no-cache tzdata ca-certificates \
 	&& cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	\
 	# forward request and error logs to docker log collector
