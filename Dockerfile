@@ -1,5 +1,7 @@
 FROM alpine:3.9
 
+
+
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
 ENV NGINX_VERSION 1.16.0
