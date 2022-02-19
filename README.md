@@ -24,6 +24,12 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 4. 使用东八时区。
 5. 预设“Modern configuration”型配置文件示例
 
+## IP库下载地址
+```
+wget https://download.db-ip.com/free/dbip-country-lite-2022-02.mmdb.gz
+gunzip dbip-country-lite-2022-02.mmdb.gz
+```
+
 ## 构建
 
 ~~docker build -t rsnow/nginx:arm64v8-1.21.5 .~~
