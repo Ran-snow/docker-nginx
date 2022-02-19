@@ -53,6 +53,7 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		--with-http_v2_module \
 		--with-openssl=/usr/src/openssl-$OPENSSL_VERSION \
 		--add-module=/usr/src/ngx_brotli \
+		--add-module=/usr/src/ngx_http_geoip2 \
 	" \
 	&& addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
@@ -71,7 +72,13 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		libxslt-dev \
 		gd-dev \
 		geoip-dev \
+		g++ \
+		libtool \
+		automake \
+		autoconf \
+		libmaxminddb-dev \
 	&& git clone --depth=1 --recurse-submodules https://github.com/google/ngx_brotli.git /usr/src/ngx_brotli \
+	&& git clone --depth=1 --recurse-submodules https://github.com/leev/ngx_http_geoip2_module.git /usr/src/ngx_http_geoip2 \
 	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
 	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
 	&& curl -fSL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz  -o openssl.tar.gz \
@@ -125,6 +132,7 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& rm -rf /usr/src/nginx-$NGINX_VERSION \
 	&& rm -rf /usr/src/openssl-$OPENSSL_VERSION \
 	&& rm -rf /usr/src/ngx_brotli \
+	&& rm -rf /usr/src/ngx_http_geoip2 \
 	\
 	# Bring in gettext so we can get `envsubst`, then throw
 	# the rest away. To do this, we need to install `gettext`
