@@ -6,7 +6,7 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 基于 commit baa050df601b5e798431a9db458e16f53b1031f6 修改的此 Dockerfile 。
 
 ## 更新至 Nginx(mainline version) 1.23.1
-## 更新至 Nginx(stable version) 1.22.0
+## 更新至 Nginx(stable version) 1.22.1
 
 ## Tags 
 
