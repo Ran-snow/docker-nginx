@@ -68,7 +68,7 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		linux-headers \
 		curl \
 		git \
-		gnupg1 \
+		gnupg \
 		libxslt-dev \
 		gd-dev \
 		geoip-dev \
