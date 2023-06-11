@@ -1,6 +1,8 @@
 FROM alpine:3
 
-LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
+LABEL org.opencontainers.image.source=https://github.com/Ran-snow/docker-nginx
+LABEL org.opencontainers.image.description="NGINX Docker"
+LABEL org.opencontainers.image.licenses=GPL-3.0
 
 ENV NGINX_VERSION 1.25.0
 ENV OPENSSL_VERSION 3.0.8
