@@ -22,7 +22,8 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 2. 使用openssl 3.0.8, 并对openssl进行防篡改(gpg)校验。
 3. 启用 Nginx 对 TLS1.3/http2/http3(>1.25.0)/brotli/geoip2 的支持。
 4. 使用东八时区。
-5. 预设“Modern configuration”型配置文件示例
+5. 预设“Modern configuration”型配置文件示例。
+6. 暂不支持TLS1.3 0-RTT [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data)
 
 ## IP库下载地址
 ```
