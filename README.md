@@ -5,13 +5,13 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 
 基于 commit baa050df601b5e798431a9db458e16f53b1031f6 修改的此 Dockerfile 。
 
-## 更新至 Nginx(mainline version) 1.23.3
+## 更新至 Nginx(mainline version) 1.23.4
 ## 更新至 Nginx(stable version) 1.22.1
 
 ## Tags 
 
-* [`latest`,`amd64-1.23.3` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)
-* ~~[`arm64v8-1.23.3` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)~~
+* [`latest`,`amd64-1.23.4` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)
+* ~~[`arm64v8-1.23.4` (Dockerfile)](https://github.com/Ran-snow/docker-nginx/blob/master/Dockerfile)~~
 
 ## 架构支持
 
@@ -32,11 +32,11 @@ gunzip dbip-country-lite-2022-02.mmdb.gz
 
 ## 构建
 
-~~docker build -t rsnow/nginx:arm64v8-1.23.3 .~~
+~~docker build -t rsnow/nginx:arm64v8-1.23.4 .~~
 
 ## 推送镜像
 
-~~docker push rsnow/nginx:arm64v8-1.23.3~~
+~~docker push rsnow/nginx:arm64v8-1.23.4~~
 
 ## 更多
 
