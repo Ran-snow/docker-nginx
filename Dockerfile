@@ -2,7 +2,7 @@ FROM alpine:3
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
-ENV NGINX_VERSION 1.24.0
+ENV NGINX_VERSION 1.25.0
 ENV OPENSSL_VERSION 3.0.8
 
 RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
@@ -51,6 +51,7 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		--with-compat \
 		--with-file-aio \
 		--with-http_v2_module \
+		--with-http_v3_module \
 		--with-openssl=/usr/src/openssl-$OPENSSL_VERSION \
 		--add-module=/usr/src/ngx_brotli \
 		--add-module=/usr/src/ngx_http_geoip2 \
