@@ -19,7 +19,7 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 ## 修改如下
 1. ~~改用 [https://mirrors.aliyun.com](https://mirrors.aliyun.com) 镜像源，用以提升构建速度。~~
 2. 使用openssl 3.0.10, 并对openssl进行防篡改(gpg)校验。
-3. 启用 Nginx 对 TLS1.3/http2/http3(>=1.25.1)/brotli/geoip2 的支持。
+3. 启用 Nginx 对 TLS1.3/http2/http3(>=1.25.0)/brotli/geoip2 的支持。
 4. 使用东八时区。
 5. 预设“Modern configuration”型配置文件示例。
 6. 暂不支持TLS1.3 0-RTT [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data)
@@ -32,13 +32,11 @@ wget https://download.db-ip.com/free/dbip-country-lite-2022-02.mmdb.gz
 gunzip dbip-country-lite-2022-02.mmdb.gz
 ```
 
-## 构建
+## Docker Pull Command
 
-~~docker build -t rsnow/nginx:arm64v8-1.25.1 .~~
-
-## 推送镜像
-
-~~docker push rsnow/nginx:arm64v8-1.25.1~~
+```
+docker pull rsnow/nginx:1.25.1
+```
 
 ## 更多
 
