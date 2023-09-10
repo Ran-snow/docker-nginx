@@ -5,7 +5,7 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 
 基于 commit baa050df601b5e798431a9db458e16f53b1031f6 修改的此 Dockerfile 。
 
-## 更新至 Nginx(mainline version) 1.25.1
+## 更新至 Nginx(mainline version) 1.25.2
 ## 更新至 Nginx(stable version) 1.24.0
 
 ## Dockerfile
@@ -35,7 +35,7 @@ gunzip dbip-country-lite-2022-02.mmdb.gz
 ## Docker Pull Command
 
 ```
-docker pull rsnow/nginx:1.25.1
+docker pull rsnow/nginx:1.25.2
 ```
 
 ## 更多
