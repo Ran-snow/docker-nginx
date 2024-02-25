@@ -23,6 +23,7 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 4. 使用东八时区。
 5. 预设“Modern configuration”型配置文件示例。
 6. 暂不支持TLS1.3 0-RTT [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data)
+7. 使用freenginx
 
 ## IP库下载地址
 

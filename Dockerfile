@@ -83,8 +83,8 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		libmaxminddb-dev \
 	&& git clone --depth=1 --recurse-submodules https://github.com/google/ngx_brotli.git /usr/src/ngx_brotli \
 	&& git clone --depth=1 --recurse-submodules https://github.com/leev/ngx_http_geoip2_module.git /usr/src/ngx_http_geoip2 \
-	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
-	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
+	&& curl -fSL https://freenginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
+	&& curl -fSL https://freenginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
 	&& curl -fSL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz  -o openssl.tar.gz \
 	&& curl -fSL https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz.asc  -o openssl.tar.gz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
