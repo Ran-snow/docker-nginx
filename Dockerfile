@@ -109,7 +109,7 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& tar -zxC /usr/src -f openssl.tar.gz \
 	&& rm nginx.tar.gz \
 	&& rm openssl.tar.gz \
-	&& cd /usr/src/nginx-$NGINX_VERSION \
+	&& cd /usr/src/freenginx-$NGINX_VERSION \
 	&& ./configure $CONFIG --with-debug \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
 	&& mv objs/nginx objs/nginx-debug \
@@ -133,7 +133,7 @@ RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& ln -s ../../usr/lib/nginx/modules /etc/nginx/modules \
 	&& strip /usr/sbin/nginx* \
 	&& strip /usr/lib/nginx/modules/*.so \
-	&& rm -rf /usr/src/nginx-$NGINX_VERSION \
+	&& rm -rf /usr/src/freenginx-$NGINX_VERSION \
 	&& rm -rf /usr/src/openssl-$OPENSSL_VERSION \
 	&& rm -rf /usr/src/ngx_brotli \
 	&& rm -rf /usr/src/ngx_http_geoip2 \
