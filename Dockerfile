@@ -4,8 +4,8 @@ LABEL org.opencontainers.image.source=https://github.com/Ran-snow/docker-nginx
 LABEL org.opencontainers.image.description="NGINX Docker"
 LABEL org.opencontainers.image.licenses=GPL-3.0
 
-ENV NGINX_VERSION 1.27.0
-ENV OPENSSL_VERSION 3.0.13
+ENV NGINX_VERSION 1.27.1
+ENV OPENSSL_VERSION 3.0.14
 ENV OPENSSL_CONF /etc/ssl/openssl.cnf
 
 RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \
