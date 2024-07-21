@@ -36,7 +36,7 @@ gunzip dbip-country-lite-2022-02.mmdb.gz
 ## Docker Pull Command
 
 ```
-docker pull rsnow/nginx:1.26.0
+docker pull rsnow/nginx:1.27.2
 ```
 
 ## 更多
