@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.description="NGINX Docker"
 LABEL org.opencontainers.image.licenses=GPL-3.0
 
 ENV NGINX_VERSION 1.29.0
-ENV OPENSSL_VERSION 3.0.16
+ENV OPENSSL_VERSION 3.0.17
 ENV OPENSSL_CONF /etc/ssl/openssl.cnf
 
 RUN GPG_KEYS_NGINX=B0F4253373F8F6F510D42178520A9993A1C052F8 \

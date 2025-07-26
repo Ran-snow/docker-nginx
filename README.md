@@ -18,7 +18,7 @@ Dockerfile 参考自官方的 [docker-nginx](https://github.com/nginxinc/docker-
 
 ## 修改如下
 1. ~~改用 [https://mirrors.aliyun.com](https://mirrors.aliyun.com) 镜像源，用以提升构建速度。~~
-2. 使用openssl 3.0.16, 并对openssl进行防篡改(gpg)校验。
+2. 使用openssl 3.0.17, 并对openssl进行防篡改(gpg)校验。
 3. 启用 Nginx 对 TLS1.3/http2/http3(>=1.25.0)/brotli/geoip2 的支持。
 4. 使用东八时区。
 5. 预设“Modern configuration”型配置文件示例。
